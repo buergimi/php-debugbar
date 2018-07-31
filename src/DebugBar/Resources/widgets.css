@@ -53,6 +53,22 @@ div.phpdebugbar-widgets-messages {
   position: relative;
   height: 100%;
 }
+  div.phpdebugbar-widgets-messages span.phpdebugbar-widgets-copy-clipboard {
+    float: right;
+    margin-left: 8px;
+    color: #888;
+  }
+  div.phpdebugbar-widgets-messages div.phpdebugbar-widgets-status span.phpdebugbar-widgets-copy-clipboard {
+    color: #555;
+  }
+  div.phpdebugbar-widgets-messages span.phpdebugbar-widgets-copy-clipboard:before {
+    font-family: PhpDebugbarFontAwesome;
+    margin-right: 4px;
+    font-size: 12px;
+  }
+  div.phpdebugbar-widgets-messages span.phpdebugbar-widgets-copy-clipboard:before {
+    content: "\f0c5";
+  }
   div.phpdebugbar-widgets-messages li.phpdebugbar-widgets-list-item span.phpdebugbar-widgets-value.phpdebugbar-widgets-warning:before {
     font-family: PhpDebugbarFontAwesome;
     content: "\f071";
