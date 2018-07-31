@@ -336,6 +336,14 @@ if (typeof(PhpDebugBar) == 'undefined') {
                             } else {
                                 prettyVal = prettyVal || createCodeBlock(value.message, 'php');
                                 val.addClass(csscls('pretty')).empty().append(prettyVal);
+                                $('<span title="Copy to clipboard" />')
+                                .addClass(csscls('copy-clipboard'))
+                                .css('cursor', 'pointer')
+                                .on('click', function (event) {
+                                	self.onCopyToClipboard(this);
+                                	event.stopPropagation();
+                                })
+                                .appendTo(val);
                             }
                         });
                     }
@@ -408,6 +416,33 @@ if (typeof(PhpDebugBar) == 'undefined') {
             });
 
             this.set('exclude', excludedLabels);
+        },
+        
+        onCopyToClipboard: function (el) {
+            var code = $(el).closest('li').find('code').get(0);
+            var copy = function () {
+                try {
+                    document.execCommand('copy');
+                    alert('Message copied to the clipboard');
+                } catch (err) {
+                    console.log('Oops, unable to copy');
+                }
+            };
+            var select = function (node) {
+                if (document.selection) {
+                    var range = document.body.createTextRange();
+                    range.moveToElementText(node);
+                    range.select();
+                } else if (window.getSelection) {
+                    var range = document.createRange();
+                    range.selectNodeContents(node);
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+                }
+                copy();
+                window.getSelection().removeAllRanges();
+            };
+            select(code);
         }
 
     });
