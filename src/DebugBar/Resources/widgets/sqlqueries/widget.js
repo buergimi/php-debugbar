@@ -16,7 +16,7 @@
             $(el).toggleClass(csscls('excluded'));
 
             var excludedLabels = [];
-            this.$toolbar.find(csscls('.filter') + csscls('.excluded')).each(function() {
+            this.$toolbarFilters.find(csscls('.filter') + csscls('.excluded')).each(function() {
                 excludedLabels.push(this.rel);
             });
 
@@ -53,7 +53,8 @@
         render: function() {
             this.$status = $('<div />').addClass(csscls('status')).appendTo(this.$el);
 
-            this.$toolbar = $('<div></div>').addClass(csscls('toolbar')).appendTo(this.$el);
+            this.$toolbarSearch = $('<div></div>').addClass(csscls('toolbar-search')).appendTo(this.$el);
+            this.$toolbarFilters = $('<div></div>').addClass(csscls('toolbar-filters')).appendTo(this.$el);
 
             var filters = [], self = this;
 
@@ -81,9 +82,9 @@
                             .text(stmt.connection)
                             .attr('rel', stmt.connection)
                             .on('click', function() { self.onFilterClick(this); })
-                            .appendTo(self.$toolbar);
+                            .appendTo(self.$toolbarFilters);
                         if (filters.length>1) {
-                            self.$toolbar.show();
+                            self.$toolbarFilters.show();
                             self.$list.$el.css("margin-bottom","20px");
                         }
                     }

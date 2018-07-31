@@ -351,15 +351,16 @@ if (typeof(PhpDebugBar) == 'undefined') {
             }});
 
             this.$list.$el.appendTo(this.$el);
-            this.$toolbar = $('<div><i class="phpdebugbar-fa phpdebugbar-fa-search"></i></div>').addClass(csscls('toolbar')).appendTo(this.$el);
+            this.$toolbarSearch = $('<div><i class="phpdebugbar-fa phpdebugbar-fa-search"></i></div>').addClass(csscls('toolbar-search')).appendTo(this.$el);
+            this.$toolbarFilters = $('<div></div>').addClass(csscls('toolbar-filters')).appendTo(this.$el);
 
             $('<input type="text" />')
                 .on('change', function() { self.set('search', this.value); })
-                .appendTo(this.$toolbar);
+                .appendTo(this.$toolbarSearch);
 
             this.bindAttr('data', function(data) {
                 this.set({ exclude: [], search: '' });
-                this.$toolbar.find(csscls('.filter')).remove();
+                this.$toolbarFilters.find(csscls('.filter')).remove();
 
                 var filters = [], self = this;
                 for (var i = 0; i < data.length; i++) {
@@ -372,7 +373,7 @@ if (typeof(PhpDebugBar) == 'undefined') {
                         .text(data[i].label)
                         .attr('rel', data[i].label)
                         .on('click', function() { self.onFilterClick(this); })
-                        .appendTo(this.$toolbar);
+                        .appendTo(this.$toolbarFilters);
                 }
             });
 
@@ -403,7 +404,7 @@ if (typeof(PhpDebugBar) == 'undefined') {
             $(el).toggleClass(csscls('excluded'));
 
             var excludedLabels = [];
-            this.$toolbar.find(csscls('.filter') + csscls('.excluded')).each(function() {
+            this.$toolbarFilters.find(csscls('.filter') + csscls('.excluded')).each(function() {
                 excludedLabels.push(this.rel);
             });
 
