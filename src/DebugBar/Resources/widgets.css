@@ -53,9 +53,6 @@ div.phpdebugbar-widgets-messages {
   position: relative;
   height: 100%;
 }
-  div.phpdebugbar-widgets-messages ul.phpdebugbar-widgets-list {
-    padding-bottom: 20px;
-  }
   div.phpdebugbar-widgets-messages li.phpdebugbar-widgets-list-item span.phpdebugbar-widgets-value.phpdebugbar-widgets-warning:before {
     font-family: PhpDebugbarFontAwesome;
     content: "\f071";
@@ -93,8 +90,6 @@ div.phpdebugbar-widgets-messages {
     font-style: italic;
   }
   div.phpdebugbar-widgets-messages div.phpdebugbar-widgets-toolbar {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     background: #fff;
   }
